@@ -24,7 +24,7 @@ int cnt;
 int main(){
   cin.tie(0)->sync_with_stdio(0);
   freopen("input.txt", "r", stdin); 
-  freopen("small_data.txt", "w", stdout);
+  freopen("small_data.csv", "w", stdout);
 
   mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
@@ -65,7 +65,7 @@ int main(){
   			if(dp[mask]<=lim) cnt++;
   			// cout << "comp " << dp[mask] << ' ' << lim << nl;
   		}
-  		cout << cnt << " ";
+  		cout << cnt << ", ";
   	}
   	cout << nl;
   }
