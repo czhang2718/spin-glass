@@ -64,7 +64,7 @@ int main(){
 				if(sum <= lim) cnt++;
 			}
 	   		// cout << "appr " << cnt << "/" << K << "*" << (1<<n) << nl;
-			cout << (ll) (ld(cnt)/K*(1LL<<n)) << " ";
+			cout <<  ld(cnt)/K << " ";
   		}
 		cout << nl;
 	}
