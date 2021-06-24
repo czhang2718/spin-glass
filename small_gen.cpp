@@ -16,22 +16,18 @@ const int MOD=1e9+7;
 template<class T> using pqg=priority_queue<T, vector<T>, greater<T>>;
 
 const int N=18;
+const int D=100;
 const int C=1;
 double J[N][N];
 double dp[1<<N];
 int cnt;
+int ans[D][N];
 
 int main(){
   cin.tie(0)->sync_with_stdio(0);
-  freopen("input.txt", "r", stdin); 
-  freopen("small_data.csv", "w", stdout);
+  freopen("small_data2.csv", "w", stdout);
 
   mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-
-  rep(n, 1, N){
-  	cout << "n=" << n << ",";
-  }
-  cout << nl;
 
   rep(n, 1, N){
   	// cout << "sd " << C*6.0/n/n << nl;
@@ -65,11 +61,21 @@ int main(){
   			if(dp[mask]<=lim) cnt++;
   			// cout << "comp " << dp[mask] << ' ' << lim << nl;
   		}
-  		cout << cnt << ", ";
+  		cout << cnt;
+		if(d!=100) cout << ",";
+		ans[d-1][n-1]=cnt;
   	}
-  	cout << nl;
+	cout << nl;
   }
-}
+
+ 	//rep(i, 0, D-1){
+	//	rep(j, 0, N-1){
+	//		cout << ans[i][j];
+	//		if(j!=N-1) cout << ",";
+	//	}
+	//	cout << nl;
+	//}
+ }
 
 // d=100
 // d*(n^2 + n*2^n)
