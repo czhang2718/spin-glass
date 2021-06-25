@@ -21,18 +21,18 @@ const int C=1;
 double J[N][N];
 double dp[1<<N];
 int cnt;
-int ans[D][N];
+double ans[D][N];
 
 int main(){
   cin.tie(0)->sync_with_stdio(0);
-  freopen("small_data2.csv", "w", stdout);
+  freopen("small_data4.csv", "w", stdout);
 
   mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 
   rep(n, 1, N){
   	// cout << "sd " << C*6.0/n/n << nl;
   	normal_distribution<double> dist(0, C*6.0/n/n);
-  	double lim=-sqrt(6.0*C)/n;
+  	double lim=-4.0*sqrt(6.0*C)/n;
   	rep(d, 1, 100){
   		cnt=0;
   		dp[0]=0;
@@ -42,6 +42,7 @@ int main(){
   				dp[0]+=J[i][j];
   			}
   		}
+		if(dp[0]<=lim) cnt++;
   		// 00000 == all -1s
   		rep(mask, 1, (1<<n)-1){
   			int bit=0;
@@ -61,20 +62,20 @@ int main(){
   			if(dp[mask]<=lim) cnt++;
   			// cout << "comp " << dp[mask] << ' ' << lim << nl;
   		}
-  		cout << cnt;
-		if(d!=100) cout << ",";
-		ans[d-1][n-1]=cnt;
+  		//cout << cnt;
+		//if(d!=100) cout << ",";
+		ans[d-1][n-1]=double(cnt)/(1<<n);
   	}
 	cout << nl;
   }
-
- 	//rep(i, 0, D-1){
-	//	rep(j, 0, N-1){
-	//		cout << ans[i][j];
-	//		if(j!=N-1) cout << ",";
-	//	}
-	//	cout << nl;
-	//}
+	cout << fixed;
+ 	rep(i, 0, D-1){
+		rep(j, 0, N-1){
+			cout << 100.0*ans[i][j];
+			if(j!=N-1) cout << ",";
+		}
+		cout << nl;
+	}
  }
 
 // d=100
