@@ -10,9 +10,13 @@ We look at distribution of counts of spin sequences such that E <= [threshold :=
 # Methods
 
 |Small n|Large n| 
+|----|-----|
 |1<=n<=18| 19<=n<=60|     
+|----|-----|
 |Brute force all spin sequences and count the number that produce E<=threshold| Approximate the ratio of sequences that produce small enough E with a random sample|
+|----|-----|
 |D trials for each n|D trials; K randomly chosen representatives| 
+|----|-----|
 
 ## Constants
 * 1<=n<=60
