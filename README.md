@@ -1,4 +1,4 @@
-Histograms of low energy distribution in Sherrington-Kirkpatrick spin glass model.
+# Low energy distribution in Sherrington-Kirkpatrick model
 ```cpp
 E[i][j] = J[i][j] * spin[i] * spin[j]
 ```
@@ -7,7 +7,7 @@ J is a random variable drawn from normal dist. centered at 0, with standard devi
 Spins are either 1 or -1.
 We look at distribution of counts of spin sequences such that E <= [threshold := C * sqrt(6/n^2)], for fixed n. Computation is done differently for small and large n.
 
-# Methods
+## Methods
 
 |Small n|Large n| 
 |-------|-------|
@@ -15,7 +15,7 @@ We look at distribution of counts of spin sequences such that E <= [threshold :=
 |Brute force all spin sequences and count the number that produce E<=threshold| Approximate the ratio of sequences that produce small enough E with a random sample|
 |D trials for each n|D trials; K randomly chosen representatives| 
 
-## Constants
+### Constants
 * 1<=n<=60
 * D=100 (for small n)
 * D=200 (for large n)
