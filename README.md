@@ -1,6 +1,6 @@
 Histograms of low energy distribution in Sherrington-Kirkpatrick spin glass model.
 ```cpp
-E[i][j] = J[i][j] * spin[i] * spin[j]}
+E[i][j] = J[i][j] * spin[i] * spin[j]
 ```
 E = sum of all E[i][j], i<j.
 J is a random variable drawn from normal dist. centered at 0, with standard deviation 6/n^2.
