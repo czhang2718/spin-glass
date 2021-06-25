@@ -1,4 +1,4 @@
-# Low energy distribution in Sherrington-Kirkpatrick model
+# Distribution of low-lying states in Sherrington-Kirkpatrick model
 ```cpp
 E[i][j] = J[i][j] * spin[i] * spin[j]
 ```
