@@ -25,7 +25,7 @@ int main(){
 		out << nl;
 		out << fixed;
 		rep(n, 8, N){
-  			normal_distribution<double> dist(0, (double)2.0/n);
+  			normal_distribution<double> dist(0, sqrt(2.0/n));
   			double lim=-1.0*C*sqrt(2.0/n);
 			cout << lim << " " << (double)2.0/(n) << nl;
   			rep(d, 1, D){
