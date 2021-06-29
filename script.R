@@ -4,7 +4,7 @@ library(viridis)
 library(forcats)
 
 # gallery
-data <- read.table("https://raw.githubusercontent.com/czhang2718/spin-glass/main/small_data4.csv", header=TRUE, sep=",")
+data <- read.table("https://raw.githubusercontent.com/czhang2718/spin-glass/main/small_data2.csv", header=TRUE, sep=",")
 data <- data %>%
   gather(key="text", value="value") %>%
   mutate(text = gsub("\\.", " ",text)) %>%
