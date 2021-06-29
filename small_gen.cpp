@@ -15,10 +15,10 @@ mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 ofstream out;
 
 int main(){
-	rep(C, 1, 1){
+	rep(C, 1, 4){
 		string file="small_data"+to_string(C)+".csv";
 		out.open(file.c_str());
-		rep(n, 1, N){
+		rep(n, 5, N){
   			normal_distribution<double> dist(0, (double)2.0/n);
   			double lim=-1.0*C*sqrt(2.0/n);
 			cout << lim << " " << (double)2.0/(n) << nl;

@@ -4,7 +4,7 @@ library(viridis)
 library(forcats)
 
 # gallery
-data <- read.table("https://raw.githubusercontent.com/czhang2718/spin-glass/main/large_data4.csv", header=FALSE, sep=",")
+data <- read.table("https://raw.githubusercontent.com/czhang2718/spin-glass/main/small_data1.csv", header=FALSE, sep=",")
 data <- data %>%
   gather(key="text", value="value") %>%
   mutate(text = gsub("\\.", " ",text)) %>%
@@ -12,7 +12,7 @@ data <- data %>%
 p <- data %>%
   mutate(text = fct_reorder(text, value)) %>%
   ggplot( aes(x=value, color=text, fill=text)) +
-  geom_histogram(alpha=0.6, binwidth = 1) +
+  geom_histogram(alpha=0.6, binwidth = .6) +
   scale_fill_viridis(discrete=TRUE) +
   scale_color_viridis(discrete=TRUE) +
   facet_wrap(~text)
