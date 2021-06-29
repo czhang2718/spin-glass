@@ -2,82 +2,68 @@
 using namespace std;
  
 #define rep(i, a, b) for(int i=a; i<=b; i++)
-#define trav(a, x) for(auto& a:x)
-#define all(x) begin(x), end(x)
-#define sz(x) (int) x.size()
-#define f first
-#define s second
 #define nl "\n"
-#define pb push_back
-typedef long long ll;
-typedef vector<int> vi;
-typedef pair<int, int> pii;
-const int MOD=1e9+7;
-template<class T> using pqg=priority_queue<T, vector<T>, greater<T>>;
 
-const int N=18;
+const int N=20;
 const int D=100;
-const int C=1;
 double J[N][N];
 double dp[1<<N];
 int cnt;
 double ans[D][N];
 
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+ofstream out;
+
 int main(){
-  cin.tie(0)->sync_with_stdio(0);
-  freopen("small_data4.csv", "w", stdout);
-
-  mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-
-  rep(n, 1, N){
-  	// cout << "sd " << C*6.0/n/n << nl;
-  	normal_distribution<double> dist(0, C*6.0/n/n);
-  	double lim=-4.0*sqrt(6.0*C)/n;
-  	rep(d, 1, 100){
-  		cnt=0;
-  		dp[0]=0;
-  		rep(i, 0, n-1){
-  			rep(j, i+1, n-1){
-  				J[i][j]=dist(rng);
-  				dp[0]+=J[i][j];
-  			}
-  		}
-		if(dp[0]<=lim) cnt++;
-  		// 00000 == all -1s
-  		rep(mask, 1, (1<<n)-1){
-  			int bit=0;
-  			rep(j, 0, n-1){
-  				if(mask&(1<<j)){
-  					bit=j; break;
+	rep(C, 1, 1){
+		string file="small_data"+to_string(C)+".csv";
+		out.open(file.c_str());
+		rep(n, 1, N){
+  			normal_distribution<double> dist(0, (double)2.0/n);
+  			double lim=-1.0*C*sqrt(2.0/n);
+			cout << lim << " " << (double)2.0/(n) << nl;
+  			rep(d, 1, 100){
+  				cnt=0;
+  				dp[0]=0;
+  				rep(i, 0, n-1){
+  					rep(j, i+1, n-1){
+  						J[i][j]=dist(rng);
+  						dp[0]+=J[i][j];
+  					}
   				}
-  			}
-  			dp[mask]=dp[mask^(1<<bit)];
-  			rep(i, 0, bit-1){
-  				dp[mask]+=2.0*(mask&(1<<i)?1:-1)*J[i][bit];
-  			}
-  			rep(j, bit+1, n-1){
-  				dp[mask]+=2.0*(mask&(1<<j)?1:-1)*J[bit][j];
-  			}
+				if(dp[0]<=lim) cnt++;
+  				// 00000 == all -1s
+  				rep(mask, 1, (1<<n)-1){
+  					int bit=0;
+  					rep(j, 0, n-1){
+  						if(mask&(1<<j)){
+  							bit=j; break;
+  						}
+  					}
+  					dp[mask]=dp[mask^(1<<bit)];
+  					rep(i, 0, bit-1){
+  						dp[mask]+=2.0*(mask&(1<<i)?1:-1)*J[i][bit];
+  					}
+  					rep(j, bit+1, n-1){
+  						dp[mask]+=2.0*(mask&(1<<j)?1:-1)*J[bit][j];
+  					}
 
-  			if(dp[mask]<=lim) cnt++;
-  			// cout << "comp " << dp[mask] << ' ' << lim << nl;
-  		}
-  		//cout << cnt;
-		//if(d!=100) cout << ",";
-		ans[d-1][n-1]=double(cnt)/(1<<n);
-  	}
-	cout << nl;
-  }
-	cout << fixed;
- 	rep(i, 0, D-1){
-		rep(j, 0, N-1){
-			cout << 100.0*ans[i][j];
-			if(j!=N-1) cout << ",";
+  					if(dp[mask]<=lim) cnt++;
+   				}
+				ans[d-1][n-1]=double(cnt)/(1<<n);
+  			}
+			out << fixed;
+ 			rep(i, 0, D-1){
+				rep(j, 0, N-1){
+					out << 100.0*ans[i][j];
+					if(j!=N-1) out << ",";
+				}
+				out << nl;
+			}
 		}
-		cout << nl;
+		out.close();
 	}
- }
-
+}
 // d=100
 // d*(n^2 + n*2^n)
 // n<=18

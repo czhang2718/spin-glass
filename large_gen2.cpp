@@ -34,16 +34,17 @@ const int D=200;
 const int K=100;
 const int C=1;
 double J[N][N];
+int ans[D][N];
 int cnt;
 
 int main(){
 	cin.tie(0)->sync_with_stdio(0);
-	freopen("large_data.txt", "w", stdout);
+	freopen("large_data4.csv", "w", stdout);
 
 	rep(n, 19, 60){
 		// cout << "sd " << C*6.0/n/n << nl;
-		normal_distribution<double> dist(0, C*6.0/n/n);
-		double lim=-sqrt(6.0*C)/n;
+		normal_distribution<double> dist(0, 6.0/n/n);
+		double lim=-4.0*sqrt(6.0)/n;
 		rep(d, 1, D){
 			cnt=0;
 			rep(i, 0, n-1){
@@ -57,27 +58,24 @@ int main(){
 				auto b=random_bitset<60>(.5);
 				ld sum=0; //ll?
 				for(int i=0; i<n; i++){
-					for(int j=i+1; j<n; j++){
+				for(int j=i+1; j<n; j++){
 						sum +=ld (b[i]?1:-1)*(b[j]?1:-1)*J[i][j];
 					}
 				}
 				if(sum <= lim) cnt++;
 			}
-	   		// cout << "appr " << cnt << "/" << K << nl;
-			cout <<  ld(cnt) << " ";
+			ans[d-1][n-1]=cnt;
+			// cout <<  cnt << " ";
   		}
+		// cout << nl;
+	}
+
+	rep(i, 0, D-1){
+		rep(n, 19, 60){
+			cout << ans[i][n-1];
+			if(n!=60) cout << ",";
+		}
 		cout << nl;
 	}
 }
 
-/*
-n>=19
-approximate ratio of E>=sd by randomly picking sequences for sigma
-n = 19...60 
-	60 bc overflow
-k = number of simulations
-k = 100
-d = number of data points in histogram (for fixed n)
-d = 200
-O(sum of d*k*(n+n^2/2) / 2) ~ 1e9?
-*/
