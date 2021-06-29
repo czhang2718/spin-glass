@@ -19,6 +19,12 @@ int main(){
 		string file="small_data"+to_string(C)+".csv";
 		out.open(file.c_str());
 		rep(n, 5, N){
+			out << "N" << n;
+			if(n!=N) out << ",";
+		}
+		out << nl;
+		out << fixed;
+		rep(n, 5, N){
   			normal_distribution<double> dist(0, (double)2.0/n);
   			double lim=-1.0*C*sqrt(2.0/n);
 			cout << lim << " " << (double)2.0/(n) << nl;
@@ -52,9 +58,9 @@ int main(){
    				}
 				ans[d-1][n-1]=double(cnt)/(1<<n);
   			}
-			out << fixed;
+
  			rep(i, 0, D-1){
-				rep(j, 0, N-1){
+				rep(j, 4, N-1){
 					out << 100.0*ans[i][j];
 					if(j!=N-1) out << ",";
 				}
