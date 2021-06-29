@@ -5,7 +5,7 @@ using namespace std;
 #define nl "\n"
 
 const int N=20;
-const int D=100;
+const int D=200;
 double J[N][N];
 double dp[1<<N];
 int cnt;
