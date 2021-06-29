@@ -4,7 +4,7 @@ using namespace std;
 #define rep(i, a, b) for(int i=a; i<=b; i++)
 #define nl "\n"
 
-const int N=20;
+const int N=21;
 const int D=200;
 double J[N][N];
 double dp[1<<N];
@@ -24,7 +24,7 @@ int main(){
 		}
 		out << nl;
 		out << fixed;
-		rep(n, 5, N){
+		rep(n, 8, N){
   			normal_distribution<double> dist(0, (double)2.0/n);
   			double lim=-1.0*C*sqrt(2.0/n);
 			cout << lim << " " << (double)2.0/(n) << nl;
@@ -60,7 +60,7 @@ int main(){
   			}
 		}
  		rep(i, 0, D-1){
-			rep(j, 4, N-1){
+			rep(j, 7, N-1){
 				out << (int)(1000*ans[i][j]);
 				if(j!=N-1) out << ",";
 			}
