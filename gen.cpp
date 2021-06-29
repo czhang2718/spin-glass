@@ -58,14 +58,13 @@ int main(){
    				}
 				ans[d-1][n-1]=double(cnt)/(1<<n);
   			}
-
- 			rep(i, 0, D-1){
-				rep(j, 4, N-1){
-					out << 100.0*ans[i][j];
-					if(j!=N-1) out << ",";
-				}
-				out << nl;
+		}
+ 		rep(i, 0, D-1){
+			rep(j, 4, N-1){
+				out << (int)(1000*ans[i][j]);
+				if(j!=N-1) out << ",";
 			}
+			out << nl;
 		}
 		out.close();
 	}
