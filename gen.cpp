@@ -4,7 +4,8 @@ using namespace std;
 #define rep(i, a, b) for(int i=a; i<=b; i++)
 #define nl "\n"
 
-const int N=21;
+const int N=23;
+const int Nlow=18;
 const int D=200;
 double J[N][N];
 double dp[1<<N];
@@ -13,30 +14,36 @@ double ans[D][N];
 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
 ofstream out;
+clock_t z = clock();
 
 int main(){
-	rep(C, 1, 4){
-		string file="small_data"+to_string(C)+".csv";
+//	rep(t, 1, 100){
+//
+//	}
+	rep(C, 1, 7){
+		string file="combined"+to_string(C)+".csv";
 		out.open(file.c_str());
-		rep(n, 5, N){
+		rep(n, Nlow, N){
 			out << "N" << n;
 			if(n!=N) out << ",";
 		}
 		out << nl;
 		out << fixed;
-		rep(n, 8, N){
-  			normal_distribution<double> dist(0, sqrt(2.0/n));
-  			double lim=-1.0*C*sqrt(2.0/n);
-			cout << lim << " " << (double)2.0/(n) << nl;
+		rep(n, Nlow, N){
+  			normal_distribution<double> dist(0, sqrt(2.0/(n-1)));
+  			double lim=-1.0*C*sqrt(2.0/(n-1));
+			cout << lim << " " << (double)2.0/(n-1) << nl;
   			rep(d, 1, D){
   				cnt=0;
   				dp[0]=0;
+				double sum=0;
   				rep(i, 0, n-1){
   					rep(j, i+1, n-1){
   						J[i][j]=dist(rng);
-  						dp[0]+=J[i][j];
+  						sum+=J[i][j];
   					}
   				}
+				dp[0]=sum;
 				if(dp[0]<=lim) cnt++;
   				// 00000 == all -1s
   				rep(mask, 1, (1<<n)-1){
@@ -56,18 +63,22 @@ int main(){
 
   					if(dp[mask]<=lim) cnt++;
    				}
-				ans[d-1][n-1]=double(cnt)/(1<<n);
+				ans[d-1][n-1]=cnt;
   			}
+			cout << "DONE WITH n=" << n << nl;
 		}
  		rep(i, 0, D-1){
-			rep(j, 7, N-1){
-				out << (int)(1000*ans[i][j]);
+			rep(j, Nlow-1, N-1){
+				out << ans[i][j];
 				if(j!=N-1) out << ",";
 			}
 			out << nl;
 		}
 		out.close();
 	}
+
+	cout << "Total Time: %.3f\n" << (double)(clock() - z) / CLOCKS_PER_SEC;
+
 }
 // d=100
 // d*(n^2 + n*2^n)
