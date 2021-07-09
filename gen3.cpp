@@ -11,7 +11,7 @@ typedef long double ld;
 const int N=20;
 const int Nlow=20;
 const int D=200;
-const int T=1; //100
+const int T=100; //100
 double J[N][N];
 double dp[1<<N];
 int cnt;
@@ -22,13 +22,13 @@ ofstream out;
 clock_t z = clock();
 
 int main(){
-	rep(C, 1, 1){ // 7
+	rep(C, 1, 7){ // 7
 		string file="frequency"+to_string(C)+".csv";
 		out.open(file.c_str());
 		out << fixed;
 		rep(n, Nlow, N){
   			normal_distribution<double> dist(0, sqrt(2.0/(n-1)));
-  			double lim=-1.0*C*sqrt(2.0/(n-1));
+  			double lim=-1.0*C*sqrt(n);
 			rep(t, 1, T){
 				vi freq;
 				int sum=0;
@@ -41,15 +41,18 @@ int main(){
 	  						dp[0]+=J[i][j];
 	  					}
 	  				}
-					if(dp[0]<=lim) cnt++;
+					if(dp[0]<=lim) cnt+=2;
 	  				// 00000 == all -1s
 	  				rep(mask, 1, (1<<n)-1){
 	  					int bit=0;
+						int ones=0;
 	  					rep(j, 0, n-1){
 	  						if(mask&(1<<j)){
 	  							bit=j; break;
+								ones++;
 	  						}
 	  					}
+						if(2*ones>n) continue;
 	  					dp[mask]=dp[mask^(1<<bit)];
 	  					rep(i, 0, bit-1){
 	  						dp[mask]+=2.0*(mask&(1<<i)?1:-1)*J[i][bit];
@@ -57,8 +60,8 @@ int main(){
 	  					rep(j, bit+1, n-1){
 	  						dp[mask]+=2.0*(mask&(1<<j)?1:-1)*J[bit][j];
 	  					}
-	
-	  					if(dp[mask]<=lim) cnt++;
+						if(2*ones==n) cnt++;
+	  					if(dp[mask]<=lim) cnt+=2;
 	   				}
 					freq.pb(cnt);
 					sum+=cnt;
@@ -66,8 +69,10 @@ int main(){
 				double mean=(double)sum/double(D);
 				long double var=0;
 				trav(k, freq){
+					cout << var << " ";
 					var+=ld(k-mean)*(k-mean);
 				}
+				cout << nl;
 				var/=(D-1);
 				out << mean << "," << var << nl;
 			}

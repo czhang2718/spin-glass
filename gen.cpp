@@ -31,8 +31,8 @@ int main(){
 		out << fixed;
 		rep(n, Nlow, N){
   			normal_distribution<double> dist(0, sqrt(2.0/(n-1)));
-  			double lim=-1.0*C*sqrt(2.0/(n-1));
-			cout << lim << " " << (double)2.0/(n-1) << nl;
+  			double lim=-1.0*C*sqrt(n);
+			// cout << lim << " " << (double)2.0/(n-1) << nl;
   			rep(d, 1, D){
   				cnt=0;
   				dp[0]=0;
@@ -48,11 +48,14 @@ int main(){
   				// 00000 == all -1s
   				rep(mask, 1, (1<<n)-1){
   					int bit=0;
+					int ones=0;
   					rep(j, 0, n-1){
   						if(mask&(1<<j)){
-  							bit=j; break;
+  							bit=j; 
+							ones++;
   						}
   					}
+					if(2*ones>n) continue;
   					dp[mask]=dp[mask^(1<<bit)];
   					rep(i, 0, bit-1){
   						dp[mask]+=2.0*(mask&(1<<i)?1:-1)*J[i][bit];
@@ -60,8 +63,8 @@ int main(){
   					rep(j, bit+1, n-1){
   						dp[mask]+=2.0*(mask&(1<<j)?1:-1)*J[bit][j];
   					}
-
-  					if(dp[mask]<=lim) cnt++;
+					if(2*ones==n && dp[mask]<=lim) cnt++;
+  					else if(dp[mask]<=lim) cnt+=2;
    				}
 				ans[d-1][n-1]=cnt;
   			}
