@@ -4,38 +4,21 @@ library(viridis)
 library(forcats)
 
 # gallery
-for(i in 1:7){
-  data <- read.table(paste0("https://raw.githubusercontent.com/czhang2718/spin-glass/main/combined", "1", ".csv"), header=TRUE, sep=",")
-  data <- data %>%
-    gather(key="text", value="value") %>%
-    mutate(text = gsub("\\.", " ",text)) %>%
-    mutate(value = round(as.numeric(value),0))
-  p <- data %>%
-    mutate(text = fct_reorder(text, value)) %>%
-    ggplot( aes(x=value, color=text, fill=text)) +
-    geom_histogram(alpha=0.6, binwidth = 1000) +
-    scale_fill_viridis(discrete=TRUE) +
-    scale_color_viridis(discrete=TRUE) +
-    facet_wrap(~text)
-  p
-  
-  jpeg(paste0("c", i, ".jpg"))
-  plot(p)
-  dev.off()
-}
-
 library(plotly)
+library(withr)
+library(htmlwidgets)
 
-p <- plot_ly(x = 1:10, y = 1:10) %>% add_markers()
-widget_file_size <- function(p) {
-  d <- tempdir()
-  withr::with_dir(d, htmlwidgets::saveWidget(p, "index.html"))
-  f <- file.path(d, "index.html")
-  mb <- round(file.info(f)$size / 1e6, 3)
-  message("File is: ", mb," MB")
+for(i in 1:7){
+  data <- read.table(paste0("https://raw.githubusercontent.com/czhang2718/spin-glass/main/combined", i, ".csv"), header=TRUE, sep=",")
+  for(j in 18:23){
+    plot <- plot_ly(x = data[[paste0("N", j)]], type = "histogram") %>% layout(title = paste0("n=", j))
+    saveWidget(plot, paste0("plots/c", i, "n", j, ".html"), selfcontained = F, libdir = "lib")
+  }
 }
-widget_file_size(p)
-widget_file_size(partial_bundle(p))
+
+# data <- read.table(paste0("https://raw.githubusercontent.com/czhang2718/spin-glass/main/combined", 1, ".csv"), header=TRUE, sep=",")
+# p <- plot_ly(x=data[["N18"]], type="histogram")
+# p
 
 # individual
 data<- read.table("https://raw.githubusercontent.com/czhang2718/spin-glass/main/large_data.txt", header=FALSE)
