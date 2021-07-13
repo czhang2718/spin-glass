@@ -31,7 +31,7 @@ int main(){
 		out << nl;
 		out << fixed;
 		rep(n, Nlow, N){
-  			normal_distribution<double> dist(0, 1);
+  			normal_distribution<double> dist(0, sqrt(2.0/(n-1)));
   			double lim=-1.0*C*sqrt(n);
 			// cout << lim << " " << (double)2.0/(n-1) << nl;
   			rep(d, 1, D){
