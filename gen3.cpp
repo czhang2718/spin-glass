@@ -22,25 +22,34 @@ ofstream out;
 clock_t z = clock();
 
 int main(){
-	rep(C, 1, 7){ // 7
-		string file="frequency"+to_string(C)+".csv";
+	rep(C, 1, 5){ // 7
+		string file="meanvar"+to_string(C)+".csv";
 		out.open(file.c_str());
 		out << fixed;
 		rep(n, Nlow, N){
   			normal_distribution<double> dist(0, sqrt(2.0/(n-1)));
   			double lim=-1.0*C*sqrt(n);
 			rep(t, 1, T){
+				cout << "t " << t << nl;
 				vi freq;
-				int sum=0;
+				int tot=0;
 	  			rep(d, 1, D){
 	  				cnt=0;
-	  				dp[0]=0;
+	  				double sum=0;
+					double ss=0;
 	  				rep(i, 0, n-1){
 	  					rep(j, i+1, n-1){
 	  						J[i][j]=dist(rng);
-	  						dp[0]+=J[i][j];
+	  						ss+=J[i][j]*J[i][j];
 	  					}
 	  				}
+	  				rep(i, 0, n-1){
+	  					rep(j, i+1, n-1){
+	  						J[i][j]*=sqrt((double)n/ss);
+	  						sum+=J[i][j];
+	  					}
+	  				}
+	  				dp[0]=sum;
 					if(dp[0]<=lim) cnt+=2;
 	  				// 00000 == all -1s
 	  				rep(mask, 1, (1<<n)-1){
@@ -48,7 +57,7 @@ int main(){
 						int ones=0;
 	  					rep(j, 0, n-1){
 	  						if(mask&(1<<j)){
-	  							bit=j; break;
+	  							bit=j;
 								ones++;
 	  						}
 	  					}
@@ -60,23 +69,27 @@ int main(){
 	  					rep(j, bit+1, n-1){
 	  						dp[mask]+=2.0*(mask&(1<<j)?1:-1)*J[bit][j];
 	  					}
-						if(2*ones==n) cnt++;
-	  					if(dp[mask]<=lim) cnt+=2;
+						if(2*ones==n && dp[mask]<=lim) cnt++;
+  						else if(dp[mask]<=lim) cnt+=2;
 	   				}
 					freq.pb(cnt);
-					sum+=cnt;
+					// cout << cnt << nl;
+					tot+=cnt;
 	  			}
-				double mean=(double)sum/double(D);
+				double mean=(double)tot/double(D);
 				long double var=0;
 				trav(k, freq){
-					cout << var << " ";
+					// cout << var << " ";
 					var+=ld(k-mean)*(k-mean);
 				}
 				cout << nl;
 				var/=(D-1);
 				out << mean << "," << var << nl;
+				cout << mean << "," << var << nl;
+
 			}
 		}
+		out.close();
 	}
 
 	cout << "Total Time: %.3f\n" << (double)(clock() - z) / CLOCKS_PER_SEC;

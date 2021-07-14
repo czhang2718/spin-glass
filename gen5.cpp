@@ -52,7 +52,7 @@ int main(){
 					}
 				}
 				dp[0]=sum;
-				if(dp[0]<=lim) cnt++;
+				if(dp[0]<=lim) cnt+=2;
   				// 00000 == all -1s
   				rep(mask, 1, (1<<n)-1){
   					int bit=0;
@@ -74,6 +74,7 @@ int main(){
 					if(2*ones==n && dp[mask]<=lim) cnt++;
   					else if(dp[mask]<=lim) cnt+=2;
    				}
+				cout << cnt << nl;
 				ans[d-1][n-1]=cnt;
   			}
 			cout << "DONE WITH n=" << n << nl;

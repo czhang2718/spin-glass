@@ -33,7 +33,7 @@ library(plotly)
 library(withr)
 library(htmlwidgets)
 
-for(i in 1:7){
+for(i in 1:5){
   data <- read.table(paste0("https://raw.githubusercontent.com/czhang2718/spin-glass/main/combined", i, ".csv"), header=TRUE, sep=",")
   for(j in 18:23){
     plot <- plot_ly(x = data[[paste0("N", j)]], type = "histogram", nbinsx = 40) %>% layout(title = paste0("n=", j))
