@@ -2,8 +2,10 @@ library(tidyverse)
 library(hrbrthemes)
 library(viridis)
 library(forcats)
+library(plotly)
 
-data <- read.table("https://raw.githubusercontent.com/czhang2718/spin-glass/main/n18.csv", header=TRUE, sep=",")
+d <- read.table("https://raw.githubusercontent.com/czhang2718/spin-glass/main/n18.csv", header=T)
+data <- read.table("n18_fix.txt", header=TRUE, sep=",")
 data <- data %>%
   gather(key="text", value="value") %>%
   mutate(text = gsub("\\.", " ",text)) %>%
