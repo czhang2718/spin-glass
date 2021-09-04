@@ -9,8 +9,8 @@ const int Nlow=18;
 const int D=200;
 double J[N][N];
 double dp[1<<N];
-double lim[6]={-15.7, -16.9, -18, -19.1, -20.25, -21.5}; //k=20
-// double lim[6]={-15, -16.3, -17.4, -18.5, -19.7, -20.95}; //k=40
+// double lim[6]={-15.7, -16.9, -18, -19.1, -20.25, -21.5}; //k=20
+double lim[6]={-15, -16.3, -17.4, -18.5, -19.7, -20.95}; //k=40
 int cnt;
 double ans[D][N];
 
@@ -20,7 +20,7 @@ clock_t z = clock();
 
 int main(){
 	// freopen("output1.txt", "w", stdout);
-	string file="new_dat.csv";
+	string file="new_dat40.csv";
 	out.open(file.c_str());
 	rep(n, 18, 23){
 		out << "N" << n;
