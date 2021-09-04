@@ -4,13 +4,15 @@ using namespace std;
 #define rep(i, a, b) for(int i=a; i<=b; i++)
 #define nl "\n"
 
+
 const int N=23;
 const int Nlow=18;
-const int D=30;
+const int D=50;
 double J[N][N];
 double dp[1<<N];
-// double lim[4]={-15.7, -16.9, -18, -19.1, -20.25, -21.5};
-double lim=-20.25;
+// double lim[6]={-15.7, -16.9, -18, -19.1, -20.25, -21.5}; // k=20
+// double lim[6]={-15, -16.3, -17.4, -18.5, -19.7, -20.95}; //k=40
+double lim=-20.95;
 int cnt;
 double ans[D][N];
 
@@ -20,8 +22,7 @@ clock_t z = clock();
 
 int main(){
 	freopen("output1.txt", "w", stdout);
-	rep(C, 3, 3){ // 1-5
-		cout << "C " << C << nl;
+	// rep(C, 3, 3){ // 1-5
 		// string file="combined"+to_string(C)+".csv";
 		// out.open(file.c_str());
 		// rep(n, Nlow, 18){
@@ -31,7 +32,7 @@ int main(){
 		// out << nl;
 		int tot=0;
 		cout << fixed;
-		rep(n, 22, 22){
+		rep(n, N, N){
   			normal_distribution<double> dist(0, sqrt(2.0/(n-1)));
 			// cout << lim << " " << (double)2.0/(n-1) << nl;
   			rep(d, 1, D){
@@ -74,7 +75,7 @@ int main(){
 					if(2*ones==n && dp[mask]<=lim) cnt++;
   					else if(dp[mask]<=lim) cnt+=2;
    				}
-				cout << cnt << nl;
+				// cout << cnt << nl;
 				tot+=cnt;
 				// ans[d-1][n-1]=cnt;
   			}
@@ -89,7 +90,7 @@ int main(){
 		// 	out << nl;
 		// }
 		// out.close();
-	}
+	// }
 
 	// cout << "Total Time: %.3f\n" << (double)(clock() - z) / CLOCKS_PER_SEC;
 

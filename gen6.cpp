@@ -9,7 +9,8 @@ const int Nlow=18;
 const int D=200;
 double J[N][N];
 double dp[1<<N];
-double lim[6]={-15.7, -16.9, -18, -19.1, -20.25, -21.5};
+double lim[6]={-15.7, -16.9, -18, -19.1, -20.25, -21.5}; //k=20
+// double lim[6]={-15, -16.3, -17.4, -18.5, -19.7, -20.95}; //k=40
 int cnt;
 double ans[D][N];
 
@@ -25,10 +26,11 @@ int main(){
 		out << "N" << n;
 		if(n!=N) out << ",";
 	}
-	// out << nl;
+	out << nl;
 	int tot=0;
 	cout << fixed;
 	rep(n, 18, 23){
+		tot=0;
 		normal_distribution<double> dist(0, sqrt(2.0/(n-1)));
 		rep(d, 1, D){
 			cnt=0;
@@ -84,9 +86,9 @@ int main(){
 	 	}
 	 	out << nl;
 	}
+	// cout << "Total Time: %.3f\n" << (double)(clock() - z) / CLOCKS_PER_SEC;
 }
 
-	// cout << "Total Time: %.3f\n" << (double)(clock() - z) / CLOCKS_PER_SEC;
 
 // d=100
 // d*(n^2 + n*2^n)
