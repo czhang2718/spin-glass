@@ -79,7 +79,7 @@ int main(){
 	}
 
 	mean/=D;
-	cout << "mean " << mean << nl;
+	// cout << "mean " << mean << nl;
 
 	for(int i=0; i<D; i++){
 		cout << ans[i] << nl;
