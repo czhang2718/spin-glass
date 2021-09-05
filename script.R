@@ -3,6 +3,7 @@ library(hrbrthemes)
 library(viridis)
 library(forcats)
 library(plotly)
+library(htmlwidgets)
 
 d <- read.table("https://raw.githubusercontent.com/czhang2718/spin-glass/main/n18.csv", header=T)
 data <- read.table("n18_fix.txt", header=TRUE, sep=",")
@@ -61,10 +62,17 @@ for(i in 19:60){
 
 
 # 9/3 new data
-data <- read.table("https://raw.githubusercontent.com/czhang2718/spin-glass/main/new_dat.csv", header=TRUE, sep=",")
+data <- read.table("https://raw.githubusercontent.com/czhang2718/spin-glass/main/new_dat40.csv", header=TRUE, sep=",")
 for(j in 18:23){
   plot <- plot_ly(x = data[[paste0("N", j)]], type = "histogram", nbinsx = 40) %>% layout(title = paste0("n=", j))
-  saveWidget(plot, paste0("plots2/n", j, ".html"), selfcontained = F, libdir = "lib")
+  saveWidget(plot, paste0("plots3/n", j, ".html"), selfcontained = F, libdir = "lib")
+}
+
+for(j in 18:23){
+  d<- data[[paste0("N", j)]]
+  print(j)
+  print(var(d))
+  print(mean(d))
 }
 
 
