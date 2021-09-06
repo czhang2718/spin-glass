@@ -1,6 +1,6 @@
 /*
 
-p=4
+p=5
 brute force
 
 */
@@ -11,24 +11,17 @@ using namespace std;
 
 #define nl '\n'
 
-const int D=200;
+const int D=100;
 int n=14;
 const int N=14;
 double J[N][N][N][N][N];
 int ans[D];
-double L=-12.9;
+// double L=-12.9;
 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+normal_distribution<double> dist(0, sqrt(120.0/(n-1)/(n-2)/(n-3)/(n-4)));
 
-int main(){
-	cin.tie(0)->sync_with_stdio(0);
-	// freopen("input.txt", "r", stdin);
-	freopen("p5.txt", "w", stdout);
-	// freopen("output1.txt", "w", stdout);
-
-	normal_distribution<double> dist(0, sqrt(120.0/(n-1)/(n-2)/(n-3)/(n-4))); // var = n/ (n choose p)
-	
-
+void go(int L){
 	auto solve=[&](int mask)->double{
 		double x=0;
 		for(int i=0; i<N; i++){
@@ -55,8 +48,8 @@ int main(){
 	};
 
 	double mean=0;
+	vector<int> vec;
 	for(int t=0; t<D; t++) {
-		
 		for(int i=0; i<N; i++){
 			for(int j=i+1; j<N; j++){
 				for(int k=j+1; k<N; k++){
@@ -80,12 +73,31 @@ int main(){
 			ans[t]=cnt;
 		}
 		mean+=cnt;
+		vec.push_back(cnt);
 	}
 
 	mean/=D;
-	cout << "mean " << mean << nl;
-
-	for(int i=0; i<D; i++){
-		cout << ans[i] << nl;
+	double var=0;
+	for(int k:vec){
+		var+=(k-mean)*(k-mean);
 	}
+	cout << mean << "," << var/D << nl;
+}
+
+int main(){
+	cin.tie(0)->sync_with_stdio(0);
+	// freopen("input.txt", "r", stdin);
+	// freopen("p5.txt", "w", stdout);
+	freopen("output1.txt", "w", stdout);
+
+	// for(int i=0; i<10; i++){
+	// 	double x=1-double(rand()%100)/50;
+	// 	double l=12.9;
+	// 	go(-l);
+	// }
+	for(int i=0; i<20; i++){
+		go(-13);
+		go(-12.9);
+	}
+	
 }

@@ -76,3 +76,12 @@ for(j in 18:23){
 }
 
 
+# 9/4 p=4 data
+
+data <- scan("https://raw.githubusercontent.com/czhang2718/spin-glass/main/p5.txt", what=double())
+plot <- plot_ly(x = data, type = "histogram", nbinsx = 10) %>% layout(title ="p=5, k=5, n=14")
+plot
+saveWidget(plot, paste0("plots5/p5.html"), selfcontained = F, libdir = "lib")
+
+mean(data)
+var(data)
