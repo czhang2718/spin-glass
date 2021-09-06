@@ -4,7 +4,8 @@ plot(x, y)
 abline(lm(y~x), col="red")
 
 
-dat <- read.csv("xy3.csv")
+title="p4_some"
+dat <- read.csv(paste0(title, ".csv"))
 dat=as.data.frame(dat)
 colnames(dat)=c("mean", "var")
 
@@ -19,7 +20,7 @@ plot <-
   add_lines(x = ~mean, y = fitted(fit))
 
 
-saveWidget(plot, paste0("meanvar.html"), selfcontained = F, libdir = "lib")
-summary(fit)$coefficients[2, 4]
+saveWidget(plot, paste0(paste0(title, ".html")), selfcontained = F, libdir = "lib")
+summary(fit)$coefficients
 
 

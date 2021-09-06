@@ -5,30 +5,24 @@ brute force
 
 */
 
-
 #include "bits/stdc++.h"
 using namespace std;
 
 #define nl '\n'
 
-const int D=200;
+const int D=100;
 int n=15;
 const int N=15;
 double J[N][N][N][N];
-int ans[D];
-double L=-14.05;
+// double L=-14.05;
 
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+normal_distribution<double> dist(0, sqrt(24.0/(n-1)/(n-2)/(n-3))); // var = n/ (n choose p)
 
-int main(){
-	cin.tie(0)->sync_with_stdio(0);
-	// freopen("input.txt", "r", stdin);
-	freopen("p4.txt", "w", stdout);
-	// freopen("output1.txt", "w", stdout);
 
-	normal_distribution<double> dist(0, sqrt(24.0/(n-1)/(n-2)/(n-3))); // var = n/ (n choose p)
-	
-
+void go(double L){
+	vector<int> vec;
+	double mean=0;
 	auto solve=[&](int m)->double{
 		double x=0;
 		for(int i=0; i<N; i++){
@@ -52,9 +46,7 @@ int main(){
 		return ans;
 	};
 
-	double mean=0;
 	for(int t=0; t<D; t++) {
-		
 		for(int i=0; i<N; i++){
 			for(int j=i+1; j<N; j++){
 				for(int k=j+1; k<N; k++){
@@ -73,15 +65,31 @@ int main(){
 			x=solve(m);
 			cnt+=x<L;
 			if(n&1 || bits!=n/2) cnt+=x<L;
-			ans[t]=cnt;
 		}
+		vec.push_back(cnt);
 		mean+=cnt;
 	}
 
 	mean/=D;
+	double var=0;
+	for(int k:vec){
+		var+=(k-mean)*(k-mean);
+	}
+	var/=D;
+	cout << mean << " " << var << nl;
+}
+
+int main(){
+	cin.tie(0)->sync_with_stdio(0);
+	// freopen("input.txt", "r", stdin);
+	// freopen("p4.txt", "w", stdout);
+	freopen("output1.txt", "w", stdout);
+	
 	// cout << "mean " << mean << nl;
 
-	for(int i=0; i<D; i++){
-		cout << ans[i] << nl;
+	for(int i=-9; i>=-10; i--){
+		for(int f=0; f<10; f++){
+			go(i-double(f)/6);
+		}
 	}
 }
