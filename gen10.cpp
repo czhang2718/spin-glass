@@ -11,7 +11,7 @@ using namespace std;
 
 #define nl '\n'
 
-const int D=100;
+const int D=10;
 int n=14;
 const int N=14;
 double J[N][N][N][N][N];
@@ -92,7 +92,7 @@ int main(){
 	// freopen("p5.txt", "w", stdout);
 	freopen("output1.txt", "w", stdout);
 
-	for(int i=-10; i>=-18; i--){
-		for(int t=0; t<4; t++) go(i-double(t)/4);
+	for(int i=-6; i>=-10; i--){
+		for(int t=0; t<10; t++) go(i-double(t)/10);
 	}	
 }
