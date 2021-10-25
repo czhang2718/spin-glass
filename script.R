@@ -85,3 +85,6 @@ saveWidget(plot, paste0("plots5/p5.html"), selfcontained = F, libdir = "lib")
 
 mean(data)
 var(data)
+
+
+

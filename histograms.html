@@ -7,50 +7,59 @@
 <body>
 
 <h1>9/5 Var vs. Mean</h1>
-<p>100 trials, fixed n. The rightmost plots are a combination of a bunch of thresholds, *not* chosen equidistantly. 
-The leftmost plots have thresholds, L,  chosen linearly.</p>
+<p>
+200 trials, fixed n. The leftmost plots have thresholds, L,  chosen linearly. The rightmost plots contain more data with thresholds not all chosen equidistantly. </p>
 
 <h3>p=5</h3>
-<p>L = -10, -10.25, ..., -18.5, -18.75</p>
-<p>y&#770 = -1.54 + 2.47x</p>
-<iframe src="mean-var/p5_some.html" style="width: 45vw; height: 30vw"></iframe>
-<iframe src="mean-var/p5_all.html" style="width: 45vw; height: 30vw"></iframe>
+<p>N=14</p>
+<p>L = -146/12, -147/12, ..., -179/12</p>
+<p>y&#770 = -0.12 + 1.15x</p>
+<iframe src="mean-var/p5_some.html" style="width: 48vw; height: 30vw"></iframe>
+<iframe src="mean-var/p5_all.html" style="width: 48vw; height: 30vw"></iframe>
 
 <h3>p=4</h3>
-<p>L = -11, -11.2, ..., -14.6, -14.8</p>
-<p>y&#770 = -8.93 + 4.42x</p>
-<iframe src="mean-var/p4_some.html" style="width: 45vw; height: 30vw"></iframe>
+<p>N=16</p>
+<p>L = -13, -13.1, ..., -18.8, -18.9</p>
+<p>y&#770 = -1.32 + 3.69x</p>
+<iframe src="mean-var/p4_some.html" style="width: 48vw; height: 30vw"></iframe>
+<iframe src="mean-var/p4_all.html" style="width: 48vw; height: 30vw"></iframe>
 
+<h3>p=3</h3>
+<p>N=18</p>
+<p>L = -16.7, -16.8, ..., -18.8, -18.9</p>
+<p>y&#770 = -6.09 + 5.70x</p>
+<iframe src="mean-var/p3_some.html" style="width: 48vw; height: 30vw"></iframe>
+<iframe src="mean-var/p3_all.html" style="width: 48vw; height: 30vw"></iframe>
 
 <h1>9/3 Modified problem</h1>
 <h3> K=20, P=2 </h3>
 <table>
   <tr>
-  	<td>N</td>
+    <td>N</td>
     <td>18</td>
     <td>19</td>
     <td>20</td>
-	<td>21</td>
-	<td>22</td>
-	<td>23</td>
+  <td>21</td>
+  <td>22</td>
+  <td>23</td>
   </tr>
   <tr>
-  	<td>Mean</td>
+    <td>Mean</td>
     <td>18.40</td>
     <td>22.54</td>
     <td>20.25</td>
-	<td>22.97</td>
-	<td>20.74</td>
-	<td>22.41</td>
+  <td>22.97</td>
+  <td>20.74</td>
+  <td>22.41</td>
   </tr>
    <tr>
-  	<td>Variance</td>
+    <td>Variance</td>
     <td>470.19</td>
     <td>1085.09</td>
     <td>1127.72</td>
-	<td>1574.03</td>
-	<td>1306.22</td>
-	<td>1845.16</td>
+  <td>1574.03</td>
+  <td>1306.22</td>
+  <td>1845.16</td>
   </tr>
 
  
@@ -69,31 +78,31 @@ The leftmost plots have thresholds, L,  chosen linearly.</p>
 <h3> K=40, P=2 </h3>
 <table>
   <tr>
-  	<td>N</td>
+    <td>N</td>
     <td>18</td>
     <td>19</td>
     <td>20</td>
-	<td>21</td>
-	<td>22</td>
-	<td>23</td>
+  <td>21</td>
+  <td>22</td>
+  <td>23</td>
   </tr>
   <tr>
-  	<td>Mean</td>
+    <td>Mean</td>
     <td>41.51</td>
     <td>40.31</td>
     <td>36.63</td>
-	<td>48.66</td>
-	<td>43.34</td>
-	<td>31.54</td>
+  <td>48.66</td>
+  <td>43.34</td>
+  <td>31.54</td>
   </tr>
    <tr>
-  	<td>Variance</td>
+    <td>Variance</td>
     <td>2258.39</td>
     <td>1744.17</td>
     <td>2469.53</td>
-	<td>4447.60</td>
-	<td>5298.42</td>
-	<td>2261.33</td>
+  <td>4447.60</td>
+  <td>5298.42</td>
+  <td>2261.33</td>
   </tr>
 
  
@@ -115,15 +124,15 @@ The leftmost plots have thresholds, L,  chosen linearly.</p>
 
 <table>
   <tr>
-  	<td>N</td>
+    <td>N</td>
     <td>15</td>
   </tr>
   <tr>
-  	<td>Mean</td>
+    <td>Mean</td>
     <td>4.34</td>
   </tr>
    <tr>
-  	<td>Variance</td>
+    <td>Variance</td>
     <td>11.70</td>
   </tr>
  </table>
@@ -137,15 +146,15 @@ The leftmost plots have thresholds, L,  chosen linearly.</p>
 
 <table>
   <tr>
-  	<td>N</td>
+    <td>N</td>
     <td>14</td>
   </tr>
   <tr>
-  	<td>Mean</td>
+    <td>Mean</td>
     <td>4.77</td>
   </tr>
    <tr>
-  	<td>Variance</td>
+    <td>Variance</td>
     <td>8.90</td>
   </tr>
  </table>
@@ -200,7 +209,7 @@ The leftmost plots have thresholds, L,  chosen linearly.</p>
 
 
 <h1>Old Histograms</h1>
-	
+  
 <strong style="display: inline;">c=1&nbsp;</strong>
 <iframe style="width: 14vw" src="plots/c1n18.html" title="C=1;N=18"></iframe>
 <iframe style="width: 14vw" src="plots/c1n19.html" title="C=1;N=19"></iframe>
@@ -244,7 +253,6 @@ The leftmost plots have thresholds, L,  chosen linearly.</p>
 
 
 
-
-
 </body>
 </html>
+

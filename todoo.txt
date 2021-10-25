@@ -1,0 +1,12 @@
+actually do hard segtree edu
+abc slope trick
+upsolve cf d, f
+last year fhc r1
+
+
+2000 grind
+do mbit problems for real
+
+
+do more p=5 with mean up to like 50 to see how long it stays linear for
+p=3 ;-;
